@@ -6,7 +6,7 @@
     import "Label";
     import "WOL";
     import "Popup";
-    import "Require";
+    import "Package";
 
 
     symbol Add () {
@@ -65,12 +65,10 @@ the client:"))))
 
 
     Wizard::CreateDialog();
-    if (!Require::RequireAndConflict (["wol", "netdiag"], [],
-                             // notification 1/2
-                             _("<p>To use Wake-On-Lan, <b>%1</b>  must be installed.</p>") +
-                             // notification 2/2
-                             _("<p>Do you want to install it now?</p>")))
+    if (!Package::InstallAll (["wol"]))
     {
+        Popup::Error(_("Package could not be installed.
+Install the package and try again."));
         return `auto;
     }
 
@@ -134,7 +132,7 @@ over the network.</p>");
             string mac = (string)UI::QueryWidget(`id(`table), `CurrentItem);
             if (mac != nil && mac !="")
             {
-                string cmd = sformat("/usr/sbin/ether-wake %1", mac );
+                string cmd = sformat("/usr/bin/wol %1", mac );
                 Popup::ShowFeedback(_("Waking up remote host"),  mac );
                 SCR::Execute(.target.bash, cmd);
                 sleep(2000);

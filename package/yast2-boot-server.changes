@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Sun Aug  8 07:05:20 CEST 2004 - nashif@suse.de
+
+- Use only 'wol' for waking up clients
+
+-------------------------------------------------------------------
 Wed Apr  7 13:47:11 2004 - nashif@suse.de
 
 - initial version
