@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Wed Aug 11 05:16:06 CEST 2004 - nashif@suse.de
+
+- removed Abort button
+
+-------------------------------------------------------------------
 Sun Aug  8 07:05:20 CEST 2004 - nashif@suse.de
 
 - Use only 'wol' for waking up clients
