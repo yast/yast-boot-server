@@ -99,11 +99,9 @@ Install the missing packages and try again."));
 
 
     string caption = _("Wake-On-Lan");
-    string help_text = _("
-            <h2>Wake on LAN</h2>
-            <p>With WOL, you can 'wake up' your PC simply by sending a 'magic packet' 
-            over the network.</p>
-            ");
+    string help_text = _("<h2>Wake on LAN</h2>
+<p>With WOL, you can 'wake up' your PC simply by sending a 'magic packet' 
+over the network.</p>");
 
     Wizard::SetContentsButtons(caption, contents, help_text,
 			       Label::BackButton(), Label::FinishButton());
