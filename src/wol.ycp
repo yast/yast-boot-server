@@ -1,3 +1,12 @@
+/**
+ * File:	clients/wol.ycp
+ * Package:	Boot Server
+ * Author:      Anas Nashif <nashif@suse.de>
+ * Summary:	WOL
+ *
+ * $Id$
+ */
+
 {
 
     textdomain "wol";
@@ -9,67 +18,71 @@
     import "Package";
 
 
-    symbol Add () {
-        UI::OpenDialog( `opt(`decorated),
-                `HBox(
-                    `HSpacing(1),
-                    `HCenter (
-                        `HSquash(
-                            `VBox (
-                                `HCenter (
-                                    `HSquash(
-                                        `VBox(
-                                            `Left(`VSpacing(0.2)),
-                                            `VSpacing(0.2),
-                                            `Left(`TextEntry(`id(`host),(_("Host Name:")))),
-                                            `Left(`TextEntry(`id(`mac),(_("MAC Address of
-the Client:
-"))))
-                                            )
-                                        )
-                                    ),
-                                `HSquash(
-                                    `HBox(
-                                        `PushButton(`id(`save), _("Save")),
-                                        `PushButton(`id(`cancel), _("Cancel"))
-                                        )
-                                    ),
-                                `VSpacing(0.2)
-                                )
-                            )
-                        ),
-                    `HSpacing(1)
-                        )
-                        );
+    define symbol Add ()
+	{
+	    UI::OpenDialog(
+			   `opt(`decorated),
+			   `HBox(
+				 `HSpacing(1),
+				 `HCenter (
+					   `HSquash(
+						    `VBox (
+							   `HCenter (
+								     `HSquash(
+									      `VBox(
+										    `Left(`VSpacing(0.2)),
+										    `VSpacing(0.2),
+										    `Left(`TextEntry(`id(`host),(_("Host Name:")))),
+										    `Left(`TextEntry(`id(`mac),(_("MAC Address of
+the Client: "))))
+										    )
+									      )
+								     ),
+							   `HSquash(
+								    `HBox(
+									  `PushButton(`id(`save),
+                                                                              Label::SaveButton()),
+									  `PushButton(`id(`cancel),
+                                                                              Label::CancelButton())
+									  )
+								    ),
+							   `VSpacing(0.2)
+							   )
+						    )
+					   ),
+				 `HSpacing(1)
+				 )
+			   );
 
-        any ret = nil;
-        while (true)
-        {
-            ret = Wizard::UserInput();
-            y2debug("ret=%1", ret);
-            if (ret == `save)
-            {
-                string mac = (string)UI::QueryWidget(`id(`mac), `Value);
-                string host = (string)UI::QueryWidget(`id(`host), `Value);
-                WOL::Add(mac, host);
-                break;
-            }
-            else if (ret == `back)
-            {
-                break;
-            }
-        }
-        UI::CloseDialog();
-        return (symbol)ret;
-    }
+	    any ret = nil;
+	    while (true)
+	    {
+		ret = Wizard::UserInput();
+		y2debug("ret=%1", ret);
+		if (ret == `save)
+		{
+		    string mac = (string)UI::QueryWidget(`id(`mac), `Value);
+		    string host = (string)UI::QueryWidget(`id(`host), `Value);
+		    WOL::Add(mac, host);
+		    break;
+		}
+		else if (ret == `back)
+		{
+		    break;
+		}
+	    }
+	    UI::CloseDialog();
+	    return (symbol)ret;
+	}
 
 
 
     Wizard::CreateDialog();
+    Wizard::HideAbortButton();
     if (!Package::InstallAll (["wol"]))
     {
         Popup::Error(_("Package could not be installed.
-Install the package and try again."));
+Install the missing packages and try again."));
         return `auto;
     }
 
@@ -79,20 +92,20 @@ Install the package and try again."));
 
     term below_table = `PushButton(`id(`wake), _("Wake Up"));
     term contents = Wizard_hw::ConfiguredContent(
-        /* Table header */
-        `header(_("MAC Address"), _("Host Name")),
-        overview, nil, below_table,  nil, nil );
+						 /* Table header */
+						 `header(_("MAC Address"), _("Host Name")),
+						 overview, nil, below_table,  nil, nil );
 
 
     string caption = _("Wake-On-Lan");
     string help_text = _("
-<h2>Wake on LAN</h2>
-<p>With WOL, you can 'wake up' your PC simply by sending a 'magic packet' 
-over the network.</p>
-");
+            <h2>Wake on LAN</h2>
+            <p>With WOL, you can 'wake up' your PC simply by sending a 'magic packet' 
+            over the network.</p>
+            ");
 
     Wizard::SetContentsButtons(caption, contents, help_text,
-            Label::BackButton(), Label::FinishButton());
+			       Label::BackButton(), Label::FinishButton());
 
     UI::ChangeWidget(`id(`edit_button), `Enabled, false);
     any ret = nil;
@@ -110,7 +123,7 @@ over the network.</p>
         {
             if (WOL::modified)
                 if (Popup::ReallyAbort(true) )
-                     break;
+                    break;
                 else
                     continue;
             else
