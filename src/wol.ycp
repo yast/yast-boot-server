@@ -78,6 +78,7 @@ the Client: "))))
 
 
     Wizard::CreateDialog();
+    Wizard::SetDesktopIcon("wol");
     Wizard::HideAbortButton();
     if (!Package::InstallAll (["wol"]))
     {
