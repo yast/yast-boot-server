@@ -21,9 +21,10 @@
                                         `VBox(
                                             `Left(`VSpacing(0.2)),
                                             `VSpacing(0.2),
-                                            `Left(`TextEntry(`id(`host),(_("Enter Hostname:")))),
-                                            `Left(`TextEntry(`id(`mac),(_("Enter the MAC Address of
-the client:"))))
+                                            `Left(`TextEntry(`id(`host),(_("Host Name:")))),
+                                            `Left(`TextEntry(`id(`mac),(_("MAC Address of
+the Client:
+"))))
                                             )
                                         )
                                     ),
@@ -79,15 +80,16 @@ Install the package and try again."));
     term below_table = `PushButton(`id(`wake), _("Wake Up"));
     term contents = Wizard_hw::ConfiguredContent(
         /* Table header */
-        `header(_("MAC Address"), _("Hostname")),
+        `header(_("MAC Address"), _("Host Name")),
         overview, nil, below_table,  nil, nil );
 
 
     string caption = _("Wake-On-Lan");
     string help_text = _("
-<h2>Wake On LAN</h2>
-<p>With WOL you can 'wake up' your pc simply by sending a 'magic packet' 
-over the network.</p>");
+<h2>Wake on LAN</h2>
+<p>With WOL, you can 'wake up' your PC simply by sending a 'magic packet' 
+over the network.</p>
+");
 
     Wizard::SetContentsButtons(caption, contents, help_text,
             Label::BackButton(), Label::FinishButton());
@@ -133,7 +135,7 @@ over the network.</p>");
             if (mac != nil && mac !="")
             {
                 string cmd = sformat("/usr/bin/wol %1", mac );
-                Popup::ShowFeedback(_("Waking up remote host"),  mac );
+                Popup::ShowFeedback(_("Waking remote host"),  mac );
                 SCR::Execute(.target.bash, cmd);
                 sleep(2000);
                 Popup::ClearFeedback();

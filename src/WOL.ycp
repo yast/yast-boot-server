@@ -39,9 +39,10 @@
             if (size(mac_addresses) > 0)
             {
                 boolean ret = Popup::YesNo(_("No previously configured clients found.
-However, a DHCP configuration was found on this system, should the host
-configuration data (MAC addresses and hostnames) be imported from 
-'/etc/dhcpd.conf'"));
+However, a DHCP configuration was found on this system. Import the host
+configuration data (MAC addresses and host names) from 
+'/etc/dhcpd.conf'?
+"));
                 if (!ret)
                     mac_addresses = [];
                 else
