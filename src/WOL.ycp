@@ -1,0 +1,72 @@
+{
+    module "WOL";
+    textdomain "wol";
+    import "Popup";
+
+    global list<map> mac_addresses = [];
+    global boolean modified = false;
+
+    global boolean Add(string mac, string host) {
+        mac_addresses=add(mac_addresses, $["mac": mac, "host": host]);
+        modified = true;
+        return true;
+    }
+
+
+    global boolean Read() {
+        if (SCR::Read(.target.size, "/var/lib/YaST2/wol") > 0 )
+        {
+            string wolfile = (string)SCR::Read(.target.string, "/var/lib/YaST2/wol" );
+            list<string> pairs = splitstring(wolfile, "\n");
+            pairs = filter(string p , pairs, ``(p!=""));
+            mac_addresses = maplist(string m , pairs, ``{
+                    list<string> line = splitstring(m, " ");
+                    return($["mac": line[0]:"", "host": line[1]:""]);
+                    });
+        }
+        else if ( SCR::Read(.target.size, "/etc/dhcpd.conf") > 0 ){
+            // read mac addr. from dhcpd.conf
+            string tmp = (string)SCR::Read(.target.tmpdir) + "/wol";
+            string cmd = sformat("/usr/bin/wol-dhcpdconf < /etc/dhcpd.conf > %1", tmp );
+            SCR::Execute(.target.bash, cmd);
+            string wolfile = (string)SCR::Read(.target.string, tmp );
+            list<string> pairs = splitstring(wolfile, "\n");
+            pairs = filter(string p , pairs, ``(p!=""));
+            mac_addresses = maplist(string m , pairs, ``{
+                    list<string> line = splitstring(m, " ");
+                    return($["mac": line[0]:"", "host": line[1]:""]);
+                    });
+            if (size(mac_addresses) > 0)
+            {
+                boolean ret = Popup::YesNo(_("No previously configured clients found.
+However, a DHCP configuration was found on this system, should the host
+configuration data (MAC addresses and hostnames) be imported from 
+'/etc/dhcpd.conf'"));
+                if (!ret)
+                    mac_addresses = [];
+                else
+                    modified = true;
+            }
+        }
+        return true;
+    }
+
+    global boolean Write() {
+        y2debug("mac_addresses: %1", mac_addresses );
+        list<string> lines = maplist(map m , mac_addresses , ``{
+                return (m["mac"]:"" + " " + m["host"]:"");
+                });
+        string wolfile = mergestring(lines, "\n");
+        SCR::Write(.target.string, "/var/lib/YaST2/wol", wolfile );
+        return true;
+    }
+
+    global list Overview() {
+        list overview = maplist(map m , mac_addresses , ``{
+                string mac = m["mac"]:"";
+                string host = m["host"]:"";
+                return(`item(`id(mac), mac, host ));
+                });
+        return overview;
+    }
+}

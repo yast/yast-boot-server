@@ -1,0 +1,30 @@
+@HEADER-COMMENT@
+# neededforbuild yast2-devel-packages
+
+@HEADER@
+Requires:	yast2
+
+BuildArchitectures:	noarch
+
+Summary:	Configuration of boot
+
+%description
+-
+
+@PREP@
+
+@BUILD@
+
+@INSTALL@
+
+
+@CLEAN@
+
+%files
+%defattr(-,root,root)
+@clientdir@/wol.ycp
+@moduledir@/WOL.*
+%doc @docdir@
+@desktopdir@/wol.desktop
+
+# temp
