@@ -19,5 +19,5 @@ Icon=yast-wol
 Exec=/sbin/yast2 wol
 
 Name=WOL
-GenericName=Wake-On-Lan
+GenericName=Configure Wake-on-Lan
 X-KDE-SubstituteUID=true
