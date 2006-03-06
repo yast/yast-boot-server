@@ -110,6 +110,15 @@ over the network.</p>");
     any ret = nil;
     while (true)
     {
+        if ((string)UI::QueryWidget(`id(`table), `CurrentItem)==nil){
+	 UI::ChangeWidget(`id(`edit_button), `Enabled, false);
+	 UI::ChangeWidget(`id(`wake), `Enabled, false);
+	 UI::ChangeWidget(`id(`delete_button), `Enabled, false);
+        } else{
+	  UI::ChangeWidget(`id(`edit_button), `Enabled, true);
+	  UI::ChangeWidget(`id(`wake), `Enabled, true);
+	  UI::ChangeWidget(`id(`delete_button), `Enabled, true);
+	 }
         ret = UI::UserInput();
         y2debug("ret=%1", ret);
 
