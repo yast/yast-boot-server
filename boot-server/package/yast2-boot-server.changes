@@ -1,0 +1,29 @@
+-------------------------------------------------------------------
+Mon Mar  6 15:24:18 CET 2006 - mzugec@suse.cz
+
+- fixed #142228 - buttons (enabled/disabled) 
+
+-------------------------------------------------------------------
+Fri Jan  6 15:56:21 CET 2006 - mzugec@suse.cz
+
+-version update 
+
+-------------------------------------------------------------------
+Sat Aug 14 16:02:19 CEST 2004 - nashif@suse.de
+
+- Changed desktop icon to wol
+
+-------------------------------------------------------------------
+Wed Aug 11 05:16:06 CEST 2004 - nashif@suse.de
+
+- removed Abort button
+
+-------------------------------------------------------------------
+Sun Aug  8 07:05:20 CEST 2004 - nashif@suse.de
+
+- Use only 'wol' for waking up clients
+
+-------------------------------------------------------------------
+Wed Apr  7 13:47:11 2004 - nashif@suse.de
+
+- initial version

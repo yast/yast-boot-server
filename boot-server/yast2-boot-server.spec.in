@@ -1,0 +1,30 @@
+@HEADER-COMMENT@
+
+@HEADER@
+BuildRequires:	docbook-xsl-stylesheets doxygen libxslt perl-XML-Writer popt-devel sgml-skel update-desktop-files yast2 yast2-devtools yast2-packagemanager-devel yast2-perl-bindings yast2-testsuite
+Requires:	yast2
+
+BuildArchitectures:	noarch
+
+Summary:	Configuration of boot
+
+%description
+-
+
+@PREP@
+
+@BUILD@
+
+@INSTALL@
+
+
+@CLEAN@
+
+%files
+%defattr(-,root,root)
+@clientdir@/wol.ycp
+@moduledir@/WOL.*
+%doc @docdir@
+@desktopdir@/wol.desktop
+
+# temp
