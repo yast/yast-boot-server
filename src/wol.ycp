@@ -145,10 +145,12 @@ over the network.</p>");
         }
         else if (ret == `delete_button)
         {
+	 if (Popup::ContinueCancel(_("Really delete this item?"))){
             string todelete = (string)UI::QueryWidget(`id(`table), `CurrentItem);
             WOL::mac_addresses = filter(map m, WOL::mac_addresses, ``(m["mac"]:""!=todelete));
             overview = WOL::Overview();
             UI::ChangeWidget(`id(`table), `Items, overview);
+	 }
         }
         else if (ret == `wake)
         {
