@@ -12,6 +12,15 @@
         return true;
     }
 
+    global boolean Change(string old_mac, string mac, string host){
+        list<map> new = [];
+	foreach(map<string, any> row, (list<map<string, any> >)mac_addresses, {
+	 if (row["mac"]:""!=old_mac) new = add(new, row);
+		else new = add(new, $["mac": mac, "host": host]);
+	});
+	mac_addresses = new;
+	return true;
+    }
 
     global boolean Read() {
         if (SCR::Read(.target.size, "/var/lib/YaST2/wol") > 0 )

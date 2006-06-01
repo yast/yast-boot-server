@@ -18,7 +18,7 @@
     import "Package";
 
 
-    define symbol Add ()
+    define symbol AddorEdit (string to_edit)
 	{
 	    UI::OpenDialog(
 			   `opt(`decorated),
@@ -53,6 +53,14 @@ the Client: "))))
 				 `HSpacing(1)
 				 )
 			   );
+if (to_edit!=nil){
+ foreach(map<string, string> row, (list<map<string, string> >)WOL::mac_addresses, {
+  if (to_edit == row["mac"]:""){
+   UI::ChangeWidget(`host, `Value, row["host"]:"");
+   UI::ChangeWidget(`mac, `Value, to_edit);
+  }
+ });
+}
 
 	    any ret = nil;
 	    while (true)
@@ -63,7 +71,10 @@ the Client: "))))
 		{
 		    string mac = (string)UI::QueryWidget(`id(`mac), `Value);
 		    string host = (string)UI::QueryWidget(`id(`host), `Value);
-		    WOL::Add(mac, host);
+		    if(to_edit==nil) WOL::Add(mac, host);
+			else{
+				WOL::Change(to_edit, mac, host);
+			    }
 		    break;
 		}
 		else if (ret == `back)
@@ -139,7 +150,7 @@ over the network.</p>");
         }
         else if (ret ==`add_button)
         {
-            Add();
+            AddorEdit(nil);
             overview = WOL::Overview();
             UI::ChangeWidget(`id(`table), `Items, overview);
         }
@@ -152,6 +163,13 @@ over the network.</p>");
             UI::ChangeWidget(`id(`table), `Items, overview);
 	 }
         }
+        else if (ret == `edit_button)
+        {
+            string toedit = (string)UI::QueryWidget(`id(`table), `CurrentItem);
+	    AddorEdit(toedit);
+            overview = WOL::Overview();
+            UI::ChangeWidget(`id(`table), `Items, overview);
+	}
         else if (ret == `wake)
         {
             string mac = (string)UI::QueryWidget(`id(`table), `CurrentItem);

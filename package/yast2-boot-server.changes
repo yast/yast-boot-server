@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Thu Jun  1 14:21:19 CEST 2006 - mzugec@suse.cz
+
+- fixed #180375 - add functionality for edit button
+
+-------------------------------------------------------------------
 Mon Mar  6 15:24:18 CET 2006 - mzugec@suse.cz
 
 - fixed #142228 - buttons (enabled/disabled) 
