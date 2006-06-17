@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Sat Jun 17 16:11:51 CEST 2006 - mzugec@suse.cz
+
+- fixed #184884 - rewrite UI to response for `cancel 
+
+-------------------------------------------------------------------
 Thu Jun  1 14:21:19 CEST 2006 - mzugec@suse.cz
 
 - fixed #180375 - add functionality for edit button

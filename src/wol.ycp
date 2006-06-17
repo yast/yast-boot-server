@@ -11,7 +11,7 @@
 
     textdomain "wol";
     import "Wizard";
-    import "Wizard_hw";
+//    import "Wizard_hw";
     import "Label";
     import "WOL";
     import "Popup";
@@ -102,11 +102,22 @@ Install the missing packages and try again."));
     WOL::Read();
     list overview = WOL::Overview();
 
-    term below_table = `PushButton(`id(`wake), _("Wake Up"));
-    term contents = Wizard_hw::ConfiguredContent(
+//    term below_table = `PushButton(`id(`wake), _("Wake Up"));
+    term contents = //Wizard_hw::ConfiguredContent(
 						 /* Table header */
-						 `header(_("MAC Address"), _("Host Name")),
-						 overview, nil, below_table,  nil, nil );
+		`VBox(
+			`Table(`id(`table), 
+				 `header(_("MAC Address"), _("Host Name")),overview),
+		  `VBox(
+			`PushButton(`id(`wake), _("Wake Up")),
+		    `HBox(
+			`PushButton(`id(`add_button), _("Add")),
+			`PushButton(`id(`edit_button), _("Edit")),
+			`PushButton(`id(`delete_button), _("Delete"))
+			)
+		     ));
+//						 overview, nil, below_table,  nil, nil) ;
+//);
 
 
     string caption = _("Wake-On-Lan");
@@ -117,9 +128,9 @@ over the network.</p>");
     Wizard::SetContentsButtons(caption, contents, help_text,
 			       Label::BackButton(), Label::FinishButton());
 
-    UI::ChangeWidget(`id(`edit_button), `Enabled, false);
+//    UI::ChangeWidget(`id(`edit_button), `Enabled, false);
     any ret = nil;
-    while (true)
+    while ( true )
     {
         if ((string)UI::QueryWidget(`id(`table), `CurrentItem)==nil){
 	 UI::ChangeWidget(`id(`edit_button), `Enabled, false);
@@ -130,8 +141,11 @@ over the network.</p>");
 	  UI::ChangeWidget(`id(`wake), `Enabled, true);
 	  UI::ChangeWidget(`id(`delete_button), `Enabled, true);
 	 }
+
         ret = UI::UserInput();
         y2debug("ret=%1", ret);
+
+	if (ret == `cancel) break;
 
         if (ret == `next)
         {
