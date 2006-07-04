@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Tue Jul  4 14:17:41 CEST 2006 - mzugec@suse.cz
+
+- fixed #188544 - replace strings to Label::xxxButton()
+
+-------------------------------------------------------------------
 Sat Jun 17 16:11:51 CEST 2006 - mzugec@suse.cz
 
 - fixed #184884 - rewrite UI to response for `cancel 

@@ -111,9 +111,9 @@ Install the missing packages and try again."));
 		  `VBox(
 			`PushButton(`id(`wake), _("Wake Up")),
 		    `HBox(
-			`PushButton(`id(`add_button), _("Add")),
-			`PushButton(`id(`edit_button), _("Edit")),
-			`PushButton(`id(`delete_button), _("Delete"))
+                        `PushButton(`id(`add_button), Label::AddButton()),
+                        `PushButton(`id(`edit_button), Label::EditButton()),
+                        `PushButton(`id(`delete_button), Label::DeleteButton())
 			)
 		     ));
 //						 overview, nil, below_table,  nil, nil) ;
