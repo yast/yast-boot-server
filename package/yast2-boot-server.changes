@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Mon Jul 10 13:36:43 CEST 2006 - mzugec@suse.cz
+
+- #188544 - replace buttons strings with Labels 
+
+-------------------------------------------------------------------
 Sat Jun 17 16:11:51 CEST 2006 - mzugec@suse.cz
 
 - fixed #184884 - rewrite UI to response for `cancel 
