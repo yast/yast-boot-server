@@ -21,3 +21,4 @@ Exec=/sbin/yast2 wol
 Name=WOL
 GenericName=Configure Wake-on-Lan
 X-KDE-SubstituteUID=true
+StartupNotify=true
