@@ -9,7 +9,7 @@ BuildArchitectures:	noarch
 Summary:	YaST2 - Network Booting and Wake-On-Lan Configuration
 
 %description
--
+YaST2 module for network booting and Wake-On-Lan.
 
 @PREP@
 
