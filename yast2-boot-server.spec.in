@@ -6,7 +6,7 @@ Requires:	yast2
 
 BuildArchitectures:	noarch
 
-Summary:	Configuration of boot
+Summary:	YaST2 - Network Booting and Wake-On-Lan Configuration
 
 %description
 -
