@@ -16,9 +16,8 @@ X-SuSE-YaST-Geometry=
 X-SuSE-YaST-SortKey=
 
 Icon=yast-wol
-Exec=/sbin/yast2 wol
+Exec=xdg-su -c "/sbin/yast2 wol"
 
 Name=WOL
 GenericName=Configure Wake-on-Lan
-X-KDE-SubstituteUID=true
 StartupNotify=true
