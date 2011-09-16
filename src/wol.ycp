@@ -11,7 +11,6 @@
 
     textdomain "wol";
     import "Wizard";
-//    import "Wizard_hw";
     import "Label";
     import "WOL";
     import "Popup";
@@ -103,8 +102,8 @@ Install the missing packages and try again."));
     list overview = WOL::Overview();
 
 //    term below_table = `PushButton(`id(`wake), _("Wake Up"));
-    term contents = //Wizard_hw::ConfiguredContent(
-						 /* Table header */
+    term contents = 
+		 /* Table header */
 		`VBox(
 			`Table(`id(`table), 
 				 `header(_("MAC Address"), _("Host Name")),overview),
@@ -116,8 +115,6 @@ Install the missing packages and try again."));
                         `PushButton(`id(`delete_button), Label::DeleteButton())
 			)
 		     ));
-//						 overview, nil, below_table,  nil, nil) ;
-//);
 
 
     string caption = _("Wake-On-Lan");
