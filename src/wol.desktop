@@ -17,6 +17,6 @@ X-SuSE-YaST-SortKey=
 Icon=yast-wol
 Exec=xdg-su -c "/sbin/yast2 wol"
 
-Name=WOL
+Name=Wake-on-LAN
 GenericName=Configure Wake-on-Lan
 StartupNotify=true

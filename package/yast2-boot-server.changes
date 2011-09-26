@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Mon Sep 26 14:14:55 CEST 2011 - visnov@suse.cz
+
+- set dialog title
+- make .desktop file name reasonable
+- 2.21.0 
+
+-------------------------------------------------------------------
 Fri Aug  5 12:30:57 CEST 2011 - tgoettlicher@suse.de
 
 - fixed .desktop file (bnc #681249)
