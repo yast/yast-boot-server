@@ -1,18 +1,14 @@
-# Makefile.am for boot-server/src
+# Sources for boot-server
 
-yncludedir = @yncludedir@/boot-server
+module_DATA = \
+  modules/WOL.rb
 
-client_DATA =			\
-	wol.ycp
+client_DATA = \
+  clients/wol.rb
 
-desktop_DATA =			\
-	wol.desktop
+desktop_DATA = \
+  desktop/wol.desktop
 
-module_DATA =			\
-	WOL.ycp
-
-
-
-EXTRA_DIST = $(client_DATA)  $(module_DATA) $(desktop_DATA) 
+EXTRA_DIST = $(module_DATA) $(client_DATA) $(desktop_DATA)
 
 include $(top_srcdir)/Makefile.am.common
