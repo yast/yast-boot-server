@@ -69,4 +69,5 @@ provided by yast2-boot-server package.
 %doc %{yast_docdir}/COPYING
 
 %files devel-doc
+%defattr(-,root,root)
 %doc %{yast_docdir}/autodocs
