@@ -39,6 +39,17 @@ Summary:	YaST2 - Network Booting and Wake-On-Lan Configuration
 %description
 YaST2 module for network booting and Wake-On-Lan.
 
+%package devel-doc
+Requires:       yast2-boot-server = %version
+Group:          System/YaST
+Summary:        YaST2 - Boot Server Configuration - Development Documentation
+
+%description devel-doc
+This package contains development documentation for using the API
+provided by yast2-boot-server package.
+
+
+
 %prep
 %setup -n %{name}-%{version}
 
@@ -52,5 +63,11 @@ YaST2 module for network booting and Wake-On-Lan.
 %defattr(-,root,root)
 %{yast_clientdir}/wol.rb
 %{yast_moduledir}/WOL.rb
-%doc %{yast_docdir}
 %{yast_desktopdir}/wol.desktop
+
+%dir %{yast_docdir}
+%doc %{yast_docdir}/README
+%doc %{yast_docdir}/COPYING
+
+%files devel-doc
+%doc %{yast_docdir}/autodocs
