@@ -1,7 +1,7 @@
 #
 # spec file for package yast2-boot-server
 #
-# Copyright (c) 2013 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -15,7 +15,6 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-
 Name:           yast2-boot-server
 Version:        3.1.0
 Release:        0
@@ -23,10 +22,12 @@ Release:        0
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Source0:        %{name}-%{version}.tar.bz2
 
-Group:	        System/YaST
+Group:          System/YaST
 License:        GPL-2.0
-BuildRequires:	docbook-xsl-stylesheets doxygen libxslt perl-XML-Writer popt-devel sgml-skel update-desktop-files yast2 yast2-packagemanager-devel yast2-perl-bindings yast2-testsuite
+BuildRequires:	update-desktop-files
+BuildRequires:  yast2
 BuildRequires:  yast2-devtools >= 3.0.6
+BuildRequires:  yast2-testsuite
 Requires:	yast2
 
 BuildArchitectures:	noarch
@@ -47,11 +48,9 @@ YaST2 module for network booting and Wake-On-Lan.
 %install
 %yast_install
 
-
 %files
 %defattr(-,root,root)
 %{yast_clientdir}/wol.rb
-%{yast_moduledir}/WOL.*
+%{yast_moduledir}/WOL.rb
 %doc %{yast_docdir}
 %{yast_desktopdir}/wol.desktop
-
