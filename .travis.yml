@@ -1,16 +1,14 @@
-language: cpp
-compiler:
-    - gcc
-before_install:
-    - curl http://download.opensuse.org/repositories/YaST:/Head:/Travis/xUbuntu_12.04/Release.key | sudo apt-key add -
-    - echo "deb http://download.opensuse.org/repositories/YaST:/Head:/Travis/xUbuntu_12.04/ ./" | sudo tee -a /etc/apt/sources.list
-    - sudo apt-get update -q
-    - sudo apt-get install --no-install-recommends -y yast2-devtools yast2-testsuite yast2
-    # disable rvm, use system Ruby
-    - rvm reset
-script:
-    - make -f Makefile.cvs
-    - make
-    - sudo make install
-    - make check
+sudo: required
+language: bash
+services:
+  - docker
 
+before_install:
+  - docker build -t yast-boot-server-image .
+  # list the installed packages (just for easier debugging)
+  - docker run --rm -it yast-boot-server-image rpm -qa | sort
+
+script:
+  # the "yast-travis-ruby" script is included in the base yastdevel/ruby image
+  # see https://github.com/yast/docker-yast-ruby/blob/master/yast-travis-ruby
+  - docker run -it -e TRAVIS=1 -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" yast-boot-server-image yast-travis-ruby
