@@ -1,3 +1,10 @@
+*.pot
+.yardoc
+doc
+*.exp
+runtest.sh
+*.log
+*.sum
 Makefile
 Makefile.am
 Makefile.am.common
