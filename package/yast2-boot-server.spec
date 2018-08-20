@@ -23,7 +23,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Source0:        %{name}-%{version}.tar.bz2
 
 Group:          System/YaST
-License:        GPL-2.0
+License:        GPL-2.0-only
 BuildRequires:	update-desktop-files
 BuildRequires:  yast2
 BuildRequires:  yast2-devtools >= 3.0.6
@@ -55,4 +55,4 @@ YaST2 module for network booting and Wake-On-Lan.
 %{yast_desktopdir}/wol.desktop
 
 %dir %{yast_docdir}
-%doc %{yast_docdir}/COPYING
+%license %{yast_docdir}/COPYING
