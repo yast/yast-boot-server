@@ -16,7 +16,7 @@
 #
 
 Name:           yast2-boot-server
-Version:        4.0.1
+Version:        4.1.0
 Release:        0
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -53,6 +53,7 @@ YaST2 module for network booting and Wake-On-Lan.
 %{yast_clientdir}/wol.rb
 %{yast_moduledir}/WOL.rb
 %{yast_desktopdir}/wol.desktop
+%{_datadir}/icons/*
 
 %dir %{yast_docdir}
 %license %{yast_docdir}/COPYING
