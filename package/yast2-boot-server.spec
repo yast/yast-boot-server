@@ -53,7 +53,7 @@ YaST2 module for network booting and Wake-On-Lan.
 %{yast_clientdir}/wol.rb
 %{yast_moduledir}/WOL.rb
 %{yast_desktopdir}/wol.desktop
-%{_datadir}/icons/*
+%{yast_icondir}
 
 %dir %{yast_docdir}
 %license %{yast_docdir}/COPYING
