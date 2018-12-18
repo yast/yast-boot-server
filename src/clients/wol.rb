@@ -26,7 +26,9 @@
 # Author:      Anas Nashif <nashif@suse.de>
 # Summary:	WOL
 #
-# $Id$
+
+require "shellwords"
+
 module Yast
   class WolClient < Client
     def main
@@ -140,11 +142,11 @@ module Yast
           @overview = WOL.Overview
           UI.ChangeWidget(Id(:table), :Items, @overview)
         elsif @ret == :wake
-          @mac = Convert.to_string(UI.QueryWidget(Id(:table), :CurrentItem))
-          if @mac != nil && @mac != ""
-            @cmd = Builtins.sformat("/usr/bin/wol %1", @mac)
-            Popup.ShowFeedback(_("Waking remote host"), @mac)
-            SCR.Execute(path(".target.bash"), @cmd)
+          mac = Convert.to_string(UI.QueryWidget(Id(:table), :CurrentItem))
+          if mac != nil && mac != ""
+            cmd = Builtins.sformat("/usr/bin/wol %1", mac.shellescape)
+            Popup.ShowFeedback(_("Waking remote host"), mac)
+            SCR.Execute(path(".target.bash"), cmd)
             Builtins.sleep(2000)
             Popup.ClearFeedback
           end
