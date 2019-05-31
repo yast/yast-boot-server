@@ -54,7 +54,7 @@ YaST2 module for network booting and Wake-On-Lan.
 %{yast_desktopdir}
 %{yast_metainfodir}
 %{yast_icondir}
-%dir %{yast_docdir}
+%doc %{yast_docdir}
 %license COPYING
 
 %changelog
