@@ -44,7 +44,7 @@ module Yast
 
 
       Wizard.CreateDialog
-      Wizard.SetDesktopTitleAndIcon("wol")
+      Wizard.SetDesktopTitleAndIcon("org.opensuse.yast.WoL")
       Wizard.HideAbortButton
       if !Package.InstallAll(["wol"])
         Popup.Error(

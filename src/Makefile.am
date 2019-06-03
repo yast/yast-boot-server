@@ -7,7 +7,7 @@ client_DATA = \
   clients/wol.rb
 
 desktop_DATA = \
-  desktop/wol.desktop
+  desktop/org.opensuse.yast.WoL.desktop
 
 symbolicdir = @icondir@/hicolor/symbolic/apps
 symbolic_DATA = \

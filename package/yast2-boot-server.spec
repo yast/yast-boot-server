@@ -12,48 +12,49 @@
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
 
-# Please submit bugfixes or comments via http://bugs.opensuse.org/
+# Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
 Name:           yast2-boot-server
-Version:        4.1.1
+Version:        4.2.0
 Release:        0
-
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-Source0:        %{name}-%{version}.tar.bz2
-
+Summary:        YaST2 - Network Booting and Wake-On-Lan Configuration
 Group:          System/YaST
 License:        GPL-2.0-only
-BuildRequires:	update-desktop-files
+Url:            https://github.com/yast/yast-boot-server
+
+Source0:        %{name}-%{version}.tar.bz2
+
+BuildRequires:  update-desktop-files
 BuildRequires:  yast2
-BuildRequires:  yast2-devtools >= 3.0.6
+BuildRequires:  yast2-devtools >= 4.2.2
 BuildRequires:  yast2-testsuite
-Requires:	yast2
 
-BuildArchitectures:	noarch
-
+Requires:       yast2
 Requires:       yast2-ruby-bindings >= 1.0.0
 
-Summary:	YaST2 - Network Booting and Wake-On-Lan Configuration
+BuildArch:      noarch
 
 %description
 YaST2 module for network booting and Wake-On-Lan.
 
 %prep
-%setup -n %{name}-%{version}
+%setup -q
 
 %build
 %yast_build
 
 %install
 %yast_install
+%yast_metainfo
 
 %files
-%defattr(-,root,root)
-%{yast_clientdir}/wol.rb
-%{yast_moduledir}/WOL.rb
-%{yast_desktopdir}/wol.desktop
+%{yast_clientdir}
+%{yast_moduledir}
+%{yast_desktopdir}
+%{yast_metainfodir}
 %{yast_icondir}
+%doc %{yast_docdir}
+%license COPYING
 
-%dir %{yast_docdir}
-%license %{yast_docdir}/COPYING
+%changelog
