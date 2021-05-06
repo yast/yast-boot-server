@@ -17,7 +17,7 @@
 
 
 Name:           yast2-boot-server
-Version:        4.2.0
+Version:        4.4.1
 Release:        0
 Summary:        YaST2 - Network Booting and Wake-On-Lan Configuration
 License:        GPL-2.0-only
