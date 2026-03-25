@@ -17,14 +17,13 @@
 
 
 Name:           yast2-boot-server
-Version:        5.0.0
+Version:        5.0.1
 Release:        0
 Summary:        YaST2 - Network Booting and Wake-On-Lan Configuration
 License:        GPL-2.0-only
 Group:          System/YaST
 URL:            https://github.com/yast/yast-boot-server
 Source0:        %{name}-%{version}.tar.bz2
-BuildRequires:  update-desktop-files
 BuildRequires:  yast2
 BuildRequires:  yast2-devtools >= 4.2.2
 BuildRequires:  yast2-testsuite
